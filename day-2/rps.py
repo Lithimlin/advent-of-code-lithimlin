@@ -2,32 +2,32 @@ DECRYPTION = {
     "A": "rock",
     "B": "paper",
     "C": "scissor",
-    "X": "rock",
-    "Y": "paper",
-    "Z": "scissor",
+    "X": "lose",
+    "Y": "draw",
+    "Z": "win",
 }
 
 POINTS = {
-    "rock": 1,
-    "paper": 2,
-    "scissor": 3,
+    "win": 6,
+    "draw": 3,
+    "lose": 0,
 }
 
 OUTCOMES = {
     "rock": {
-        "rock": 3,
-        "paper": 6,
-        "scissor": 0,
+        "win": 2,
+        "draw": 1,
+        "lose": 3,
     },
     "paper": {
-        "rock": 0,
-        "paper": 3,
-        "scissor": 6,
+        "win": 3,
+        "draw": 2,
+        "lose": 1,
     },
     "scissor": {
-        "rock": 6,
-        "paper": 0,
-        "scissor": 3,
+        "win": 1,
+        "draw": 3,
+        "lose": 2,
     },
 }
 
@@ -36,7 +36,7 @@ with open("input.txt", 'r') as file:
     rounds = content.split("\n")
     rounds = [[DECRYPTION[hand] for hand in r.split()] for r in rounds]
 
-    my_hands = [POINTS[r[1]] for r in rounds]
-    my_outcomes = [OUTCOMES[r[0]][r[1]] for r in rounds]
+    my_outcomes = [POINTS[r[1]] for r in rounds]
+    my_hands = [OUTCOMES[r[0]][r[1]] for r in rounds]
 
     print("Total amount of my points:", sum(my_hands) + sum(my_outcomes))
