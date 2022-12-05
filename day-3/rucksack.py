@@ -1,3 +1,5 @@
+import numpy as np
+
 def to_score(char_set):
     char = list(char_set)[0]
     if char.isupper():
@@ -14,5 +16,11 @@ with open("input.txt", 'r') as file:
     sacks = [[sack[:compartment_sizes[n]], sack[compartment_sizes[n]:]] for n, sack in enumerate(sacks)]
 
     duplicates = [set(sack[0]).intersection(sack[1]) for sack in sacks]
-    scores = list(map(to_score, duplicates))
+    scores = map(to_score, duplicates)
     print("Part one sum of priorities:",sum(scores))
+
+    sacks = content.split('\n')
+    grouped_sacks = np.array_split(np.array(sacks), len(sacks)//3)
+    badges = [set(sack[0]).intersection(sack[1]).intersection(sack[2]) for sack in grouped_sacks]
+    scores = map(to_score, badges)
+    print("Part two sum of badge priorities:", sum(scores))
