@@ -34,8 +34,10 @@ def execute_procedure(stacks, procedure):
         # print(stacks[src-1])
         # print(stacks[dest-1])
 
+        grabbed = []
         for _ in range(reps):
-            stacks[dest-1].append(stacks[src-1].pop())
+            grabbed.append(stacks[src-1].pop())
+        stacks[dest-1].extend(grabbed[::-1])
 
         # print("--- after ---")
         # print(stacks[src-1])
