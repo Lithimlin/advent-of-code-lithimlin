@@ -13,4 +13,3 @@ with open("input.txt", 'r') as file:
 
     print("Start of packet:", find_marker(content, 4))
     print("Start of message:", find_marker(content, 14))
-    
